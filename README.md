@@ -50,4 +50,27 @@ Luego creamos el listener para el objeto donde queremos que se habra esta ventan
     infoWindow.open(map, marker);
   })  
   
-  
+  # Función para crear marcadores de manera eficiente
+    const addMarker = (props)=> {
+        var marker = new google.maps.Marker({
+            position: props.cordenadas,
+            map:map,
+            icon: props.icono
+        })
+
+        var infoWindow = new google.maps.InfoWindow({
+            content: props.content
+        })
+
+        marker.addListener('click', function(){
+        infoWindow.open(map, marker);
+        })
+      }
+      
+Ahora simplemente creamos un marcador usando:
+
+    addMarker({
+      cordenadas:{lat: -33.4724727, lng: -70.9100285},
+      icono:'./bancoEstado.png',
+      content:'<h1>Banco estado</h1><h2>wena wena</h2>'
+    })
